@@ -1,0 +1,104 @@
+<!-- guestregister.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- <link rel="stylesheet" href="guestregister.css"> -->
+    <link rel="stylesheet" href="./css/login.css">
+    <title>顾客注册</title>
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("pwd").value;
+            var confirmPassword = document.getElementById("repwd").value;
+
+            if (password !== confirmPassword) {
+                alert("确认密码和密码不一致，请重新输入。");
+                return false;
+            }
+            return true;
+        }
+
+        async function registerUser() {
+            const name = document.getElementById("call").value;
+            const gender = document.getElementById("gender").value;
+            const telnum = document.getElementById("telnum").value;
+            const password = document.getElementById("pwd").value;
+
+            if (!validatePassword()) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        gender,
+                        contact_number: telnum,
+                        password,
+                        role: 'guest', // 指定用户角色为顾客
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message); // 注册成功
+                    window.location.href = './login.html';
+                } else {
+                    alert(data.error); // 注册失败，显示错误信息
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+                alert('注册失败，请稍后再试。');
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h1>点餐用户注册</h1>
+    <form action="/register" method="post" onsubmit="return validatePassword();">
+        <img class="logo" src="./images/logo.png">
+        
+        <div class="tit">
+            <label for="call">姓名：</label>
+            <input type="text" name="call" id="call" placeholder="请输入你的姓名">
+        </div>
+        <div class="tit">
+            <label for="gender">性别：</label>
+            <select name="gender" id="gender">
+                <option value="male">男性</option>
+                <option value="female">女性</option>
+            </select>
+        </div>
+        <div class="tit">
+            <label for="telnum">联系电话：</label>
+            <input type="text" name="telnum" id="telnum" placeholder="请输入你的联系方式">
+        </div>
+        <div class="tit">
+            <label for="pwd">密码：</label>
+            <input type="password" name="pwd" id="pwd" placeholder="6-18个字符" required minlength="6" maxlength="18">
+        </div>
+        <div class="tit">
+            <label for="repwd">确认密码：</label>
+            <input type="password" name="repwd" id="repwd" placeholder="请再次输入密码" required minlength="6" maxlength="18">
+        </div>
+        <input class="btn" type="button" value="提交" onclick="registerUser()">
+        <button class="btn" type="reset" onclick="resetForm()">取消</button>
+    </form>
+    </form>
+
+    <script>
+        function resetForm() {
+            document.getElementById("pwd").value = "";
+            document.getElementById("repwd").value = "";
+        }
+    </script>
+</body>
+</html>

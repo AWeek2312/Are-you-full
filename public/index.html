@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/firstpage.css">
+    <title>首页</title>
+
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="container clearfix">
+            <div class="welcome leftfix">
+                <span class="nihao">欢迎使用饱了么</span>
+            </div>
+            <div class="topbar-nav rightfix">
+                <ul class="top-list clearfix">
+                    <li><a href="./login.html"><button class="login-btn">登录</button></a></li>
+                    <li><a href="./guestregister.html"><button class="register-btn">顾客注册</button></a></li>
+                    <li><a href="./waiterregister.html"> <button class="register-btn">厨子注册</button></a></li>
+                    <li><a href="./takemanregister.html"><button class="register-btn">骑手注册</button></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container clearfix">
+            <div class="logo leftfix">
+                <img src="./images/logo.png" alt="饱了么">
+            </div>
+            <div class="choice rightfix">
+                <ul class="choice-page clearfix">
+                    <li class="top-mainpage">首页</li>
+                    <li><a href="https://ys.mihoyo.com/">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bigp">
+        <div class="container bigp-picture">
+            <button class="prev-button">❮</button>
+            <img class="round-picture" src="./images/round1.jpg" alt="美食轮播">
+            <button class="next-button">❯</button>
+        </div>
+    </div>
+    <hr>
+    <div class="show-wish">
+        <div class="container">
+            <div class="wish-talk">恭喜你熬到了饭点，<span>打工人</span></div>
+            <div class="boast">饱了么帮助你补充能量，助你成功</div>
+        </div>
+    </div>
+    <div class="brag">
+        <div class="container clearfix">
+            <ul class="rightfix">
+                <li class="cn">
+                    <div class="num">1</div>采用专利厨房设备
+                </li>
+                <li class="cn">
+                    <div class="num">2</div>品质特多，老中少皆宜
+                </li>
+                <li class="cn">
+                    <div class="num">3</div>标准化操作
+                </li>
+                <li class="cn">
+                    <div class="num">4</div>食物营养无添脂
+                </li>
+                <li class="cn">
+                    <div class="num">5</div>制作新鲜健康食品
+                </li>
+                <li class="cn cn-last">
+                    <div class="num">6</div>量大管饱，一天不饿
+                </li>
+            </ul>
+            <img src="./images/center.png" alt="美食">
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="believe">我们承诺给你美好的美食体验</div>
+            <div class="en-believe">WE PROMISE TO GIVE YOU THE BEST FOOD EXPERIENCE</div>
+            <div class="foot-picture clearfix">
+                <img class="leftfix fp" src="./images/footer1.png" alt="底部图片">
+                <img class="leftfix fp" src="./images/footer2.png" alt="底部图片">
+                <img class="leftfix fp" src="./images/footer3.png" alt="底部图片">
+                <img class="leftfix fp" src="./images/footer4.png" alt="底部图片">
+            </div>
+            <div class="disc-pict">
+                <ul class="clearfix">
+                    <li class="leftfix num-data">600</li>
+                    <li class="leftfix num-data">120+</li>
+                    <li class="leftfix num-data">10,000+</li>
+                    <li class="leftfix num-data">100+</li>
+                </ul>
+                <ul class="clearfix">
+                    <li class="leftfix disc-data">家分店</li>
+                    <li class="leftfix disc-data">款味道产品</li>
+                    <li class="leftfix disc-data">客户好评</li>
+                    <li class="leftfix disc-data">位厨师</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="container">
+            <div class="name">BAO <span>LEME</span></div>
+            <div class="bot-cha">
+                <ul class="clearfix bot-char-box">
+                    <li class="leftfix bot-char-desc">首页</li>
+                    <li class="leftfix bot-char-desc">品牌故事</li>
+                    <li class="leftfix bot-char-desc">菜色欣赏</li>
+                    <li class="leftfix bot-char-desc">新闻资讯</li>
+                    <li class="leftfix bot-char-desc">联系我们</li>
+                </ul>
+            </div>
+            <div class="last-char">
+                手机版&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;本站由饱了么集团搭建&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;管理登录
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const roundPictures = ['./images/round1.jpg', './images/round2.jpg', './images/round3.webp'];
+        const next = document.querySelector('.next-button');
+        const prev = document.querySelector('.prev-button');
+        const img = document.querySelector('.round-picture');
+        const pic = document.querySelector('.bigp-picture');
+        let i = 0;
+        next.addEventListener('click', function () {
+            i++;
+            if (i >= roundPictures.length) {
+                i = 0;
+            }
+            img.src = roundPictures[i];
+        })
+        prev.addEventListener('click', function () {
+            i--;
+            if (i < 0) {
+                i = roundPictures.length - 1;
+            }
+            img.src = roundPictures[i];
+        })
+        let autoPlay = setInterval(function () {
+            next.click();
+        }, 1000)
+        pic.addEventListener('mouseenter', function () {
+            clearInterval(autoPlay);
+        })
+        pic.addEventListener('mouseleave', function () {
+            clearInterval(autoPlay);
+
+            autoPlay = setInterval(function () {
+                next.click();
+            }, 1000)
+        })
+    </script>
+</body>
+
+</html>

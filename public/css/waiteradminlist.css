@@ -1,0 +1,425 @@
+.topbar{
+    height: 50px;
+    background-color: #3498db;
+}
+
+.container{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.welcome{
+    height: 30px;
+    line-height: 30px;
+    color: #00a4ff;
+}
+
+.nihao{
+    font-size: 15px;
+}
+
+.topbar-nav{
+    height: 30px;
+    line-height: 30px;
+}
+
+.top-list li{
+    float: left;
+    font-size: 15px;
+    color: #00a4ff;
+}
+
+.top-list li:first-child a{
+    padding-left: 0;
+}
+
+.top-list li:last-child a{
+    padding-right: 0;
+    border: 0;
+}
+
+.header{
+    height: 120px;
+}
+
+.logo{
+    width: auto;
+    height: 120px;
+    display: inline-block;
+    line-height: 120px;
+    vertical-align: middle;
+}
+
+.choice{
+    height: 120px;
+    line-height: 120px;
+}
+
+.choice li{
+    float: left;
+    width: 150px;
+    font-size: 30px;
+    margin-left: 50px;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+
+.top-mainpage{
+    cursor: pointer;
+    background-color: rgb(0, 238, 255);
+}
+
+.choice ul li a{
+    color: black;
+}
+
+.lists{
+    padding-bottom: 20px;
+    border: #00a4ff solid 2px;
+}
+
+.list-top{
+    height: 30px;
+    background-color: rgb(0, 217, 255);
+}
+
+.list-top ul li{
+    height: 30px;
+    line-height: 30px;
+    width: 124px;
+    text-align: center;
+    border-left: black solid 1px;
+    font-size: 15px;
+    color: black;
+}
+
+.list-top ul>:first-child{
+    border-left: none;
+}
+
+.dish-picture{
+    width: 124px;
+    height: 124px;
+}
+
+.table-container {
+    display: table;
+    width: 100%; /* 表格宽度占据父元素的100% */
+    border-collapse: collapse; /* 合并表格边框 */
+  }
+
+.table-container td {
+    width: 12.5%; 
+    border: 1px solid #ccc; 
+    padding: 8px; /* 设置内边距 */
+    background-color: rgb(0, 238, 255);
+    text-align: center;
+    font-size: 20px;
+}
+
+.table-container td a{
+    cursor: pointer;
+    
+}
+
+.table-container td p{
+    cursor: pointer;
+    
+}
+
+.footer{
+    height: 470px;
+    background-color: #483E3E;
+    padding: 20px 0;
+}
+
+.believe{
+    margin: 0 auto;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bolder;
+}
+
+.en-believe{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.fp{
+    width: 100px;
+    height: auto;
+    margin-top: 80px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.num-data{
+    margin-top: 20px;
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.disc-data{
+    color: white;
+    font-size: 10px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.bottom{
+    background-color: #333;
+    height: 200px;
+    padding: 30px 0;
+}
+
+.name{
+    color: rgb(0, 238, 255);
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+.name span{
+    color: #999;
+}
+
+.bot-char-box{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.bot-char-desc{
+    display: inline-block;
+    width: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #ECECEC;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.last-char{
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.change-tit{
+    text-align: center;
+    font-size: 30px;
+    font-family: 华文新魏;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #00a4ff;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+  }
+
+  .order-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .order {
+    border: 2px solid #3498db; /* 蓝色边框 */
+    padding: 15px;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    transition: transform 0.3s; /* 添加堆叠效果的过渡 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .order:hover {
+    transform: scale(1.05); /* 鼠标悬停时的缩放效果 */
+  }
+
+  .order-info {
+    margin-bottom: 10px;
+  }
+
+  .dishes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dish {
+    width: 100px;
+    text-align: center;
+  }
+
+  .dish img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid #27ae60; /* 绿色边框 */
+  }
+
+  .order-actions {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end; /* 对齐到底部 */
+    margin-top: 10px;
+  }
+
+  .order-actions a,
+  .order-actions p {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s; /* 按钮背景色过渡效果 */
+  }
+
+  .order-actions a {
+    background-color: #3498db; /* 蓝色按钮背景色 */
+  }
+
+  .order-actions a:hover {
+    background-color: #2980b9; /* 鼠标悬停时的背景色 */
+  }
+
+  .order-actions p {
+    background-color: #27ae60; /* 绿色按钮背景色 */
+  }
+
+  .order-actions p:hover {
+    background-color: #219653; /* 鼠标悬停时的背景色 */
+  }
+
+    .topbar {
+      background-color: #3498db;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .welcome {
+      color: #fff;
+      font-weight: bold;
+      font-size: 24px; /* 设置字体大小 */
+      text-align: center; /* 文字居中 */
+    }
+
+    .top-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .top-list li {
+      margin-right: 20px;
+    }
+
+    .top-list li:last-child {
+      margin-right: 0;
+    }
+
+    .top-list p {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .topbar-nav img {
+      border-radius: 50%;
+      margin-right: 10px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .logout-btn {
+      padding: 8px 15px;
+      cursor: pointer;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
+      text-align: center;
+      background-color: #e74c3c; /* 红色按钮背景色 */
+      transition: background-color 0.3s; /* 按钮背景色过渡效果 */
+    }
+
+    .logout-btn:hover {
+      background-color: #c0392b; /* 鼠标悬停时的背景色 */
+    }
+
+    .order-actions .confirm-btn,
+    .order-actions .ready-btn {
+      cursor: pointer;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px; 
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease; 
+    }
+    
+    .order-actions .confirm-btn {
+      background-color: #4CAF50; /* 绿色 */
+      color: white;
+    }
+    
+    .order-actions .ready-btn {
+      background-color: #3498db; /* 蓝色 */
+      color: white;
+    }
+    
+    .order-actions .confirm-btn:hover {
+      background-color: #45a049; /* 绿色 hover */
+      transform: scale(1.05); 
+    }
+    
+    .order-actions .ready-btn:hover {
+      background-color: #2980b9; /* 蓝色 hover */
+      transform: scale(1.05); 
+    }
+    .list {
+      display: flex;
+      justify-content: center; 
+    }
+    
+    .order-list {
+      display: flex;
+      flex-wrap: wrap; 
+      justify-content: space-between; 
+      max-width: 1200px; 
+      width: 100%; 
+    }
+    
+    
+    
+    
+  

@@ -1,0 +1,447 @@
+.topbar{
+    height: 30px;
+    background-color: #ECECEC;
+}
+
+.container{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.welcome{
+    height: 30px;
+    line-height: 30px;
+    color: #00a4ff;
+}
+
+.nihao{
+    font-size: 15px;
+}
+
+.topbar-nav{
+    height: 30px;
+    line-height: 30px;
+}
+
+.top-list li{
+    float: left;
+    font-size: 15px;
+    color: #00a4ff;
+}
+
+.top-list li:first-child a{
+    padding-left: 0;
+}
+
+.top-list li:last-child a{
+    padding-right: 0;
+    border: 0;
+}
+
+.header{
+    height: 120px;
+}
+
+.logo{
+    width: auto;
+    height: 120px;
+    display: inline-block;
+    line-height: 120px;
+    vertical-align: middle;
+}
+
+.choice{
+    height: 120px;
+    line-height: 120px;
+}
+
+.choice li{
+    float: left;
+    width: 150px;
+    font-size: 30px;
+    margin-left: 50px;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+
+.top-mainpage{
+    cursor: pointer;
+    background-color: rgb(0, 247, 255);
+}
+
+.choice ul li a{
+    color: black;
+}
+
+.menu-inner{
+    border: #00a4ff solid 2px;
+}
+
+.dishes{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.dish-picture{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.dish-block{
+    margin-left: 10px;
+    margin-right: 10px;
+    border: black solid 1px;
+}
+
+.dish-tit{
+    text-align: center;
+    font-size: 30px;
+    font-family: 华文新魏;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #00a4ff;
+}
+
+.info{
+    border: #00a4ff solid 1px;
+    margin-bottom: 20px;
+    height: 50px;
+    line-height: 50px;
+
+}
+
+.info label{
+    font-size: 15px;
+}
+
+.info input{
+    border: black solid 1px;
+    border-radius: 2px;
+    margin-right: 30px;
+}
+
+
+.info button {
+    background-color: #ca413c; /* 绿色背景 */
+    color: white; /* 白色文字 */
+    padding: 5px 10px; /* 按钮内边距 */
+    border: none; /* 移除按钮边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* 可选：悬停效果 */
+.info button:hover {
+    background-color: #aa2c16; 
+}
+.footer{
+    height: 470px;
+    background-color: #483E3E;
+    padding: 20px 0;
+}
+
+.believe{
+    margin: 0 auto;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bolder;
+}
+
+.en-believe{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.fp{
+    width: 100px;
+    height: auto;
+    margin-top: 80px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.num-data{
+    margin-top: 20px;
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.disc-data{
+    color: white;
+    font-size: 10px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.bottom{
+    background-color: #333;
+    height: 200px;
+    padding: 30px 0;
+}
+
+.name{
+    color: rgb(0, 162, 255);
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+.name span{
+    color: #999;
+}
+
+.bot-char-box{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.bot-char-desc{
+    display: inline-block;
+    width: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #ECECEC;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.last-char{
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.change-tit{
+    text-align: center;
+    font-size: 30px;
+    font-family: 华文新魏;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #00a4ff;
+}
+
+.overlay {
+    /* position: fixed;
+    top: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 1); 半透明黑色背景 */
+    /* z-index: 1000; 指定层级，确保在其他元素之上 */
+}
+
+.overlay-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff; /* 盒子背景颜色 */
+    padding: 20px;
+    box-shadow: 0 0 10px rgb(0, 0, 0); /* 盒子阴影效果 */
+    z-index: 1001; /* 指定层级，确保在背景之上 */
+ }
+
+.ch-info button {
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white; /* 白色文字 */
+    padding: 10px 20px; /* 按钮内边距 */
+    border: none; /* 移除按钮边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* 可选：悬停效果 */
+.ch-info button:hover {
+    background-color: #45a049; /* 悬停时深绿色 */
+}
+
+.hidden{
+    display: none;
+}
+
+.menu ul li p{
+    cursor: pointer;
+}
+
+
+.aba-chan {
+    background-color: #db110a; /* 红色背景 */
+    color: white; /* 白色文字 */
+    padding: 9px 20px; /* 按钮内边距 */
+    border: none; /* 移除按钮边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* 可选：悬停效果 */
+.aba-chan:hover {
+    background-color: #a04554; /* 悬停时深绿色 */
+}
+.mask{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; /* 指定层级，确保在其他元素之上 */
+}
+.topbar {
+    background-color: #3498db;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .welcome {
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px; /* 设置字体大小 */
+    text-align: center; /* 文字居中 */
+  }
+
+  .top-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .top-list li {
+    margin-right: 20px;
+  }
+
+  .top-list li:last-child {
+    margin-right: 0;
+  }
+
+  .top-list p {
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .topbar-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .topbar-nav img {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .logout-btn {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #e74c3c; /* 红色按钮背景色 */
+    transition: background-color 0.3s; /* 按钮背景色过渡效果 */
+  }
+
+  .logout-btn:hover {
+    background-color: #c0392b; /* 鼠标悬停时的背景色 */
+  }
+    /* 菜单 */
+.menu-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* 菜品块之间左右间距相等，盒子均匀等距分布 */
+}
+
+.dish-block {
+    width: 28%;
+    margin-bottom: 20px;
+    border: none; /* Remove outer border */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+.dish-block .updata-btn {
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white; /* 白色文字 */
+    padding: 10px 20px; /* 按钮内边距 */
+    border: none; /* 移除按钮边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* 可选：悬停效果 */
+.dish-block .updata-btn:hover {
+    background-color: #45a049; /* 悬停时深绿色 */
+}
+
+.dish-block .delete-btn {
+    background-color: #ca413c; /* 绿色背景 */
+    color: white; /* 白色文字 */
+    padding: 10px 20px; /* 按钮内边距 */
+    border: none; /* 移除按钮边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* 可选：悬停效果 */
+.dish-block .delete-btn:hover {
+    background-color: #aa2c16; /* 悬停时深绿色 */
+}
+.dish-block .dish-picture {
+    border-radius: 10px; /* 圆角半径，根据需要调整 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 漂亮的阴影效果 */
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 15px;
+}
+
+/* 可选：悬停效果 */
+.dish-block:hover .dish-picture {
+    transform: scale(1.1); /* 悬停时稍微放大图片 */
+}

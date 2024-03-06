@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/guestadminlist.css" />
+  <title>查看订单</title>
+</head>
+
+</style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container clearfix">
+      <div class="welcome leftfix">
+        <span class="nihao" style="color: #fff; font-weight: bold; font-size:40px;">请您评价</span>
+      </div>
+      <div class="topbar-nav rightfix">
+        <ul class="top-list clearfix">
+          <li>
+            <p style="color: #fff;">欢迎你，亲爱的顾客</p>
+          </li>
+          <li><img src="./images/User Avatar.jpeg" alt="头像" style="width: 50px; height: 50px;"></li>
+          <li> <a href="./index.html"> <button class="logout-btn">退出登录</button></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="header">
+    <div class="container clearfix">
+      <div class="logo leftfix">
+        <img src="./images/logo.png" alt="饱了么" />
+      </div>
+      <div class="choice rightfix">
+        <ul class="choice-page clearfix">
+          <li><a href="./guestpage.html">查看菜单</a></li>
+          <li class="top-mainpage">查看订单</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="list">
+    <div class="container lists">
+      <div class="order-list"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="believe">我们承诺给你美好的美食体验</div>
+      <div class="en-believe">
+        WE PROMISE TO GIVE YOU THE BEST FOOD EXPERIENCE
+      </div>
+      <div class="foot-picture clearfix">
+        <img class="leftfix fp" src="./images/footer1.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer2.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer3.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer4.png" alt="底部图片" />
+      </div>
+      <div class="disc-pict">
+        <ul class="clearfix">
+          <li class="leftfix num-data">600</li>
+          <li class="leftfix num-data">120+</li>
+          <li class="leftfix num-data">10,000+</li>
+          <li class="leftfix num-data">100+</li>
+        </ul>
+        <ul class="clearfix">
+          <li class="leftfix disc-data">家分店</li>
+          <li class="leftfix disc-data">款味道产品</li>
+          <li class="leftfix disc-data">客户好评</li>
+          <li class="leftfix disc-data">位厨师</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container">
+      <div class="name">BAO <span>LEME</span></div>
+      <div class="bot-cha">
+        <ul class="clearfix bot-char-box">
+          <li class="leftfix bot-char-desc">首页</li>
+          <li class="leftfix bot-char-desc">品牌故事</li>
+          <li class="leftfix bot-char-desc">菜色欣赏</li>
+          <li class="leftfix bot-char-desc">新闻资讯</li>
+          <li class="leftfix bot-char-desc">联系我们</li>
+        </ul>
+      </div>
+      <div class="last-char">
+        手机版&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;本站由饱了么集团搭建&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;管理登录
+      </div>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener('click', function (e) {
+  if (e.target.classList.contains('trigger-review-btn')) {
+    const orderElement = e.target.closest('.order');
+    const reviewForm = orderElement.querySelector('.review-form');
+
+    if (reviewForm) {
+      reviewForm.style.display = 'block'; // 显示评价表单
+      e.target.style.display = 'none';
+    }
+  }
+
+  if (e.target.classList.contains('submit-review-btn')) {
+    const orderElement = e.target.closest('.order');
+    const reviewTextarea = orderElement.querySelector('.review-form .review-textarea');
+    const orderId = e.target.dataset.orderId;
+
+    if (reviewTextarea) {
+      const reviewContent = reviewTextarea.value.trim();
+
+      // 检查评价内容是否为空
+      if (!reviewContent) {
+        alert('请输入评价内容');
+        return;
+      }
+
+      // 发送评价内容和订单 ID 到后端
+      fetch('/addReview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          orderId,
+          review: reviewContent,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          // 处理后端返回的数据，这里可以根据需要进行处理
+          console.log(data);
+
+          if (data.error) {
+            // 处理错误信息
+            alert(data.error);
+          } else {
+            // 隐藏评价表单
+            const reviewForm = orderElement.querySelector('.review-form');
+            if (reviewForm) {
+              reviewForm.style.display = 'none';
+            }
+            alert("评价成功");
+            // 这里可以添加一些成功后的处理逻辑
+          }
+        })
+        .catch(error => console.error('Error submitting review:', error));
+    }
+  }
+});
+
+    // 提交评价函数
+    function submitReview(orderId) {
+      // 通过订单ID选择评价文本域
+      const reviewTextarea = document.getElementById(`review-textarea`);
+
+      // 检查是否找到了评价文本域
+      if (!reviewTextarea) {
+        console.error(`Review textarea not found for Order ID: ${orderId}`);
+        return;
+      }
+
+      const reviewContent = reviewTextarea.value.trim();
+
+      // 检查评价内容是否为空
+      if (!reviewContent) {
+        alert('请输入评价内容');
+        return;
+      }
+
+      // 发送评价内容和订单 ID 到后端
+      fetch('/addReview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          orderId,
+          review: reviewContent,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          // 处理后端返回的数据，这里可以根据需要进行处理
+          console.log(data);
+
+          if (data.error) {
+            // 后端返回了错误信息
+            if (data.error === '该订单已经评价过了。') {
+              // 显示用户订单已经评价过的提示
+              alert('该订单已经评价过了。');
+            } else {
+              // 显示其他错误信息
+              alert('评价失败，请稍后再试。');
+            }
+          } else {
+            // 没有错误，评价成功
+            alert(评价成功);
+            console.log('评价成功。');
+
+            // 隐藏评价表单
+            const reviewForm = document.getElementById('review-form');
+            if (reviewForm) {
+              reviewForm.style.display = 'none';
+            }
+
+            // 这里可以添加一些成功后的处理逻辑，例如更新界面状态等
+          }
+        })
+        .catch(error => console.error('Error submitting review:', error));
+    }
+
+
+    const orderList = document.querySelector(".order-list");
+
+    function updateOrderList() {
+      orderList.innerHTML = "";
+
+      fetch('/getOrders')
+        .then(response => response.json())
+        .then(data => {
+          if (data.orders) {
+            data.orders.forEach(order => {
+              fetchOrderDetails(order.order_id)
+                .then(orderDetails => {
+                  order.dishes = orderDetails.dishes;
+                  renderOrder(order);
+                })
+                .catch(error => console.error('Error fetching order details:', error));
+            });
+          } else {
+            console.error('Orders data not provided in the response:', data);
+          }
+        })
+        .catch(error => console.error('Error fetching orders:', error));
+    }
+
+    async function fetchOrderDetails(orderId) {
+      try {
+        const response = await fetch(`/getOrderDetails/${orderId}`);
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error fetching order details:', error);
+        throw error;
+      }
+    }
+
+    function renderOrder(order) {
+      if (!order) {
+        console.error('Order is not defined or empty.');
+        return;
+      }
+
+      const orderElement = document.createElement("div");
+      orderElement.classList.add("order");
+      orderElement.innerHTML = `
+    <div class="order-info">
+      <p>订单编号: ${order.order_id}</p>
+      <p>顾客姓名: ${order.customer_name}</p>
+      <p>骑手姓名: ${order.delivery_name}</p>
+      <p>地址: ${order.address}</p>
+      <p>电话: ${order.contact_number}</p>
+      <p>金额: ${order.amount}</p>
+      <p>订单状态: ${order.order_status}</p>
+      <p>期望送达时间: ${order.expectation_time}</p>
+    </div>
+    <div class="dishes">
+      ${Array.isArray(order.dishes) && order.dishes.length > 0 ?
+          order.dishes
+            .map(
+              (dish) => `
+              <div class="dish">
+                <img class="dish-picture" src="${dish.dish_image_path}" alt="${dish.dish_name}">
+                <p>${dish.dish_name}</p>
+              </div>`
+            )
+            .join("") :
+          '未提供菜品信息'
+        }
+    </div>
+    <div class="order-actions">
+  ${order.order_status === 'Completed' ?
+          `<p data-order-id="${order.order_id}" class="trigger-review-btn">评价</p>
+          <div class="review-form" style="display: none;">
+  <textarea class="review-textarea" placeholder="在这里输入您的评价"></textarea>
+  <button class="submit-review-btn" data-order-id="${order.order_id}">提交评价</button>
+</div>
+` :
+          ''
+        }
+</div>
+
+  `;
+
+      orderList.appendChild(orderElement);
+    }
+
+    
+
+
+    // 页面加载完成后调用 fetchOrders 获取订单信息
+    window.onload = () => {
+      updateOrderList();
+    };
+
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('submit-review-btn')) {
+        console.log('Submit Review Button Clicked for Order ID:', e.target.dataset.orderId);
+      }
+    });
+  </script>
+</body>
+
+</html>

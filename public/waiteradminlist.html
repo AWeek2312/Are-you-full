@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/waiteradminlist.css" />
+  <title>管理你的订单</title>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="container clearfix">
+      <div class="welcome leftfix">
+        <span class="nihao" style="color: #fff; font-weight: bold; font-size:40px;">订单管理系统</span>
+      </div>
+      <div class="topbar-nav rightfix">
+        <ul class="top-list clearfix">
+          <li>
+            <p style="color: #fff;">欢迎你，餐厅员工</p>
+          </li>
+          <li><img src="./images/User Avatar.jpeg" alt="头像" style="width: 50px; height: 50px;"></li>
+          <li> <a href="./index.html"> <button class="logout-btn">退出登录</button></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="header">
+    <div class="container clearfix">
+      <div class="logo leftfix">
+        <img src="./images/logo.png" alt="饱了么" />
+      </div>
+      <div class="choice rightfix">
+        <ul class="choice-page clearfix">
+          <li><a href="./waiterpage.html">菜单管理</a></li>
+          <li class="top-mainpage">订单管理</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="list">
+    <div class="container lists">
+      <div class="order-list"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="believe">我们承诺给你美好的美食体验</div>
+      <div class="en-believe">
+        WE PROMISE TO GIVE YOU THE BEST FOOD EXPERIENCE
+      </div>
+      <div class="foot-picture clearfix">
+        <img class="leftfix fp" src="./images/footer1.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer2.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer3.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer4.png" alt="底部图片" />
+      </div>
+      <div class="disc-pict">
+        <ul class="clearfix">
+          <li class="leftfix num-data">600</li>
+          <li class="leftfix num-data">120+</li>
+          <li class="leftfix num-data">10,000+</li>
+          <li class="leftfix num-data">100+</li>
+        </ul>
+        <ul class="clearfix">
+          <li class="leftfix disc-data">家分店</li>
+          <li class="leftfix disc-data">款味道产品</li>
+          <li class="leftfix disc-data">客户好评</li>
+          <li class="leftfix disc-data">位厨师</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container">
+      <div class="name">BAO <span>LEME</span></div>
+      <div class="bot-cha">
+        <ul class="clearfix bot-char-box">
+          <li class="leftfix bot-char-desc">首页</li>
+          <li class="leftfix bot-char-desc">品牌故事</li>
+          <li class="leftfix bot-char-desc">菜色欣赏</li>
+          <li class="leftfix bot-char-desc">新闻资讯</li>
+          <li class="leftfix bot-char-desc">联系我们</li>
+        </ul>
+      </div>
+      <div class="last-char">
+        手机版&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;本站由饱了么集团搭建&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;管理登录
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let orders = [];
+
+    const orderList = document.querySelector(".order-list");
+
+function renderOrder(order) {
+  if (!order) {
+    console.error('Order is not defined or empty.');
+    return;
+  }
+  console.log('Rendering order:', order);
+
+  const orderElement = document.createElement("div");
+  orderElement.classList.add("order");
+  orderElement.innerHTML = `
+    <div class="order-info">
+      <p>订单编号: ${order.order_id}</p>
+      <p>顾客编号: ${order.customer_id}</p>
+      <p>地址: ${order.address}</p>
+      <p>电话: ${order.contact_number}</p>
+      <p>金额: ${order.amount}</p>
+      <p>订单状态: ${order.order_status}</p>
+      <p>期望送达时间: ${order.expectation_time}</p>
+      <p>评价: ${order.review}</p>
+    </div>
+    <div class="dishes">
+      ${Array.isArray(order.dishes) && order.dishes.length > 0 ?
+        order.dishes
+          .map(
+            (dish) => `
+              <div class="dish">
+                <img class="dish-picture" src="${dish.dish_image_path}" alt="${dish.dish_name}">
+                <p>${dish.dish_name}</p>
+              </div>`
+          )
+          .join("") :
+        '未提供菜品信息'
+      }
+    </div>
+    
+    <div class="order-actions">
+      ${order.order_status === 'Waiting' ?
+        `<button class="confirm-btn" onclick="confirmOrder(${order.order_id})">接单</button>` :
+        ''}
+      ${order.order_status === 'Preparing' ?
+        `<button class="ready-btn"  onclick="readyOrder(${order.order_id})">就绪</button>` :
+        ''}
+    </div>
+  `;
+  orderList.appendChild(orderElement);
+}
+
+function confirmOrder(orderId) {
+  // 发送请求更新订单状态为Preparing
+  fetch(`/updateOrderStatus/${orderId}/Preparing`, { method: 'POST' })  // 注意这里改成了 POST 请求
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log('Order status updated successfully.');
+        // 更新订单列表
+        updateOrderList();
+      } else {
+        console.error('Failed to update order status:', data.error);
+      }
+    })
+    .catch(error => console.error('Error updating order status:', error));
+}
+
+function readyOrder(orderId) {
+  // 发送请求更新订单状态为Pending
+  fetch(`/updateOrderStatus/${orderId}/Pending`, { method: 'POST' })  // 注意这里改成了 POST 请求
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log('Order status updated successfully.');
+        // 更新订单列表
+        updateOrderList();
+      } else {
+        console.error('Failed to update order status:', data.error);
+      }
+    })
+    .catch(error => console.error('Error updating order status:', error));
+}
+
+
+
+
+function updateOrderList() {
+  orderList.innerHTML = "";
+
+  fetch('/getOrders')
+    .then(response => response.json())
+    .then(data => {
+      if (data.orders) {
+        // 过滤掉状态为Completed的订单
+        const waitingOrders = data.orders.filter(order => order.order_status !== '');
+
+        // 循环获取每个待处理订单的详细信息
+        waitingOrders.forEach(order => {
+          fetchOrderDetails(order.order_id)
+            .then(orderDetails => {
+              // 将订单详细信息合并到订单对象中
+              order.dishes = orderDetails.dishes;
+              // 渲染订单
+              renderOrder(order);
+            })
+            .catch(error => console.error('Error fetching order details:', error));
+        });
+      } else {
+        console.error('Orders data not provided in the response:', data);
+      }
+    })
+    .catch(error => console.error('Error fetching orders:', error));
+}
+
+
+async function fetchOrderDetails(orderId) {
+  try {
+    const response = await fetch(`/getOrderDetails/${orderId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching order details:', error);
+    throw error;
+  }
+}
+
+
+
+    window.onload = () => {
+      updateOrderList();
+    };
+  </script>
+</body>
+
+</html>

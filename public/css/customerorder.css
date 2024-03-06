@@ -1,0 +1,460 @@
+.topbar{
+    height: 30px;
+    background-color: #ECECEC;
+}
+
+.container{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.welcome{
+    height: 30px;
+    line-height: 30px;
+    color: #00a4ff;
+}
+
+.nihao{
+    font-size: 15px;
+}
+
+.topbar-nav{
+    height: 30px;
+    line-height: 30px;
+}
+
+.top-list li{
+    float: left;
+    font-size: 15px;
+    color: #00a4ff;
+}
+
+.top-list li:first-child a{
+    padding-left: 0;
+}
+
+.top-list li:last-child a{
+    padding-right: 0;
+    border: 0;
+}
+
+.header{
+    height: 120px;
+}
+
+.logo{
+    width: auto;
+    height: 120px;
+    display: inline-block;
+    line-height: 120px;
+    vertical-align: middle;
+}
+
+.choice{
+    height: 120px;
+    line-height: 120px;
+}
+
+.choice li{
+    float: left;
+    width: 150px;
+    font-size: 30px;
+    margin-left: 50px;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+
+.top-mainpage{
+    cursor: pointer;
+    background-color: rgb(0, 247, 255);
+}
+
+.choice ul li a{
+    color: black;
+}
+
+.menu-inner{
+    border: #00a4ff solid 2px;
+}
+
+.menu-tit{
+    background-color: rgb(0, 255, 255);
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.dishes{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.dish-picture{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.dish-block{
+    margin-left: 10px;
+    margin-right: 10px;
+    border: black solid 1px;
+    margin-bottom: 10px;
+}
+
+.dish-tit{
+    text-align: center;
+    font-size: 30px;
+    font-family: 华文新魏;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #00a4ff;
+}
+
+.info{
+    border: #00a4ff solid 1px;
+    margin-bottom: 20px;
+    height: 50px;
+    line-height: 50px;
+
+}
+
+.info label{
+    font-size: 15px;
+}
+
+.info input{
+    border: black solid 1px;
+    border-radius: 2px;
+    margin-right: 30px;
+}
+
+.info button{
+    height: 20px;
+    line-height: 20px;
+    width: 30px;
+    background-color: rgb(0, 238, 255);
+    color:red;
+}
+
+
+
+.dish-block p{
+    cursor: pointer;
+}
+
+
+.subm button{
+    height: 20px;
+    margin-right: 20px;
+    width: 33px;
+    margin-top: 5px;
+    background-color: #00a4ff;
+    cursor: pointer;
+}
+
+
+
+.footer{
+    margin-top: 500px;
+    height: 470px;
+    background-color: #483E3E;
+    padding: 20px 0;
+}
+
+.believe{
+    margin: 0 auto;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bolder;
+}
+
+.en-believe{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.fp{
+    width: 100px;
+    height: auto;
+    margin-top: 80px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.num-data{
+    margin-top: 20px;
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.disc-data{
+    color: white;
+    font-size: 10px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.bottom{
+    background-color: #333;
+    height: 200px;
+    padding: 30px 0;
+}
+
+.name{
+    color: rgb(0, 153, 255);
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+.name span{
+    color: #999;
+}
+
+.bot-char-box{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.bot-char-desc{
+    display: inline-block;
+    width: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #ECECEC;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.last-char{
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.change-tit{
+    text-align: center;
+    font-size: 30px;
+    font-family: 华文新魏;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #00a4ff;
+}
+
+.topbar {
+    background-color: #3498db;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .welcome {
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px; /* 设置字体大小 */
+    text-align: center; /* 文字居中 */
+  }
+
+  .top-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .top-list li {
+    margin-right: 20px;
+  }
+
+  .top-list li:last-child {
+    margin-right: 0;
+  }
+
+  .top-list p {
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .topbar-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .topbar-nav img {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .logout-btn {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #e74c3c; /* 红色按钮背景色 */
+    transition: background-color 0.3s; /* 按钮背景色过渡效果 */
+  }
+
+  .logout-btn:hover {
+    background-color: #c0392b; /* 鼠标悬停时的背景色 */
+  }
+
+  /* 菜单 */
+.menu-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* 菜品块之间左右间距相等，盒子均匀等距分布 */
+}
+
+.dish-block {
+    width: 28%;
+    margin-bottom: 20px;
+    border: none; /* Remove outer border */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+.dish-block .add-to-cart-btn {
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white; /* 白色文字 */
+    padding: 10px 20px; /* 按钮内边距 */
+    border: none; /* 移除按钮边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* 可选：悬停效果 */
+.dish-block .add-to-cart-btn:hover {
+    background-color: #45a049; /* 悬停时深绿色 */
+}
+.dish-block .dish-picture {
+    border-radius: 10px; /* 圆角半径，根据需要调整 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 漂亮的阴影效果 */
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 15px;
+}
+
+/* 可选：悬停效果 */
+.dish-block:hover .dish-picture {
+    transform: scale(1.1); /* 悬停时稍微放大图片 */
+}
+
+.menu-tit {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #007bff; /* 蓝色 */
+    text-align: center; /* 居中显示 */
+    text-transform: uppercase; /* 转换为大写字母 */
+    background-color: transparent; /* 去除背景色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    padding: 10px; /* 增加一些内边距 */
+}
+.gogocar-top {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #007bff; /* 蓝色 */
+    text-align: center; /* 居中显示 */
+    text-transform: uppercase; /* 转换为大写字母 */
+    background-color: transparent; /* 去除背景色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    padding: 10px; /* 增加一些内边距 */
+}
+
+  
+
+.gogocar {
+    margin-top: 30px;
+  }
+  
+  .gogocar-inner {
+    flex-direction: column; /* 纵向排列子元素 */
+    align-items: center; /* 居中子元素 */
+    padding: 20px; /* 添加内边距 */
+    height: auto;
+  }
+  
+
+  
+  
+  .subm {
+    display: flex; /* 设为弹性盒子 */
+    flex-direction: column; /* 纵向排列子元素 */
+    align-items: center; /* 居中子元素 */
+  }
+  
+  .subm label {
+    margin-bottom: 8px;
+  }
+  
+  .subm input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .subm button {
+    width: 70px; /* 设置按钮宽度为100% */
+    height: 41px;
+    box-sizing: border-box; /* 计算宽度时包括内边距和边框 */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .subm button:hover {
+    background-color: #45a049;
+  }
+  
+  .cancel-button {
+    background-color: #ff6347; /* 按钮背景颜色 */
+    color: white; /* 文字颜色 */
+    padding: 10px 20px; /* 内边距 */
+    border: none; /* 去除边框 */
+    border-radius: 4px; /* 圆角边框 */
+    cursor: pointer; /* 鼠标样式为手型 */
+    font-size: 16px; /* 字体大小 */
+    margin-right: 10px; /* 右边距 */
+  }
+  
+  /* 按钮悬停效果 */
+  .cancel-button:hover {
+    background-color: #d9534f; /* 悬停时的背景颜色 */
+  }
+ 
+

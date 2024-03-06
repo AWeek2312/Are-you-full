@@ -1,0 +1,174 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f5f8;
+    color: #333;
+}
+
+header {
+    background-color: #3498db;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+    max-height: 50px;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+header h1 {
+    color: #fff;
+    margin: 0;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info span {
+    margin-right: 10px;
+    color: #fff;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+button:hover {
+    background-color: #217dbb;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.column {
+    width: 30%;
+    margin: 0 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.column:hover {
+    transform: scale(1.02);
+}
+
+.column-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #3498db;
+}
+
+#orderList, #currentOrder, #orderHistory {
+    width: 100%;
+}
+
+.order-item, .history-item {
+    background-color: #ecf0f1;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.order-item:hover, .history-item:hover {
+    transform: scale(1.02);
+}
+
+
+.order-item, .history-item {
+    margin-bottom: 30px;
+}
+
+.order-item button, #currentOrder button {
+    float: right;
+    margin-top: 10px;
+}
+
+#currentOrder {
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+#currentOrder:hover {
+    transform: scale(1.02);
+}
+.dish-container {
+    display: flex;
+    justify-content: flex-start; /* 左对齐 */
+    margin-top: 20px; /* 适当的上边距 */
+}
+
+.dish-box {
+    padding: 5px; /* 调整内边距 */
+    margin: 0 5px; /* 调整外边距 */
+    text-align: center; /* 文字居中 */
+}
+
+.dish-box .dish-image-container {
+    width: 50px; /* 调整容器宽度 */
+    height: 50px; /* 调整容器高度 */
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.dish-box .dish-image-container img {
+    width: 100%; /* 图片宽度填充容器 */
+    height: 100%; /* 图片高度填充容器 */
+    object-fit: cover;
+    border-radius: 50%;
+    border: none; /* 去掉图片边框 */
+}
+
+.logout-btn {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #e74c3c; /* 红色按钮背景色 */
+    transition: background-color 0.3s; /* 按钮背景色过渡效果 */
+  }
+
+  .logout-btn:hover {
+    background-color: #c0392b; /* 鼠标悬停时的背景色 */
+  }

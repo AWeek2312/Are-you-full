@@ -1,0 +1,70 @@
+h1 {
+    text-align: center;
+    margin-top: 100px;
+    color: #00a4ff;
+    font-family: "华文新魏";
+    font-size: 40px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 80px;
+    padding: 20px;
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    text-align: center;
+}
+.tit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: #00a4ff;
+}
+
+.tit label {
+    min-width: 100px;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 20px;
+    font-family: "华文新魏";
+}
+.tit input {
+    flex: 1;
+    max-width: 200px;
+    height: 20px;
+}
+
+.form-label {
+    min-width: 100px;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 20px;
+    font-family: "华文新魏";
+}
+.form-select {
+    flex: 1;
+    height: 30px;
+}
+
+body {
+    background: url("../images/bg1.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn{
+    width: 40px;
+    font-size: 15px;
+    margin-left: 50px;
+    background-color: aqua;
+}
+
+.logo{
+    width: 150px;
+    height: auto;
+    display: inline-block;
+}
+

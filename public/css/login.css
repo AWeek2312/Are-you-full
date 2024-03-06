@@ -1,0 +1,95 @@
+/* 设置背景图片 */
+body{
+    background: url("../images/bg1.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 100px;
+    color: #00a4ff;
+    font-family: "华文新魏";
+    font-size: 40px;
+}
+
+/* 表单样式 */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.logo{
+    width: 150px;
+    height: auto;
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.swi{
+    font-size: 20px;
+    margin-left: 60px;
+}
+
+/* 表单的项目 */
+.tit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: #00a4ff;
+}
+.tit label {
+    min-width: 100px;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 20px;
+    font-family: "华文新魏";
+}
+
+/* 表单的输入框 */
+.tit input, .tit select {
+    flex: 1;
+    max-width: 200px;
+    height: 20px;
+}
+
+.btn{
+    width: 40px;
+    font-size: 15px;
+    margin-left: 30px;
+    background-color: aqua;
+    cursor:pointer;
+}
+
+.hid{
+    display: none;
+}
+
+.guest-btnA{
+    background-color: #ff8800;
+}
+
+.waiter-btnB{
+    background-color: #ff8800;
+}
+
+.takeman-btnC{
+    background-color: #ff8800;
+}
+
+.swi{
+    cursor:pointer;
+}

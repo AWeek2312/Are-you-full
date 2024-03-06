@@ -1,0 +1,171 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>登录</title>
+</head>
+<body>
+    <h1>欢迎您使用饱了么点餐系统</h1>
+    <form method="post" class="guest" id="guestForm" action="/login">
+        <img class="logo" src="./images/logo.png">
+        <ul>
+            <li class="swi guest-btnA">就餐顾客</li>
+            <li class="swi waiter-btnA">餐厅员工</li>
+            <li class="swi takeman-btnA">送餐骑手</li>
+        </ul>
+
+          <!-- 添加错误消息容器 -->
+    <div id="waiterError" class="error"></div>
+
+        <div class="tit">
+            <label for="account">账号：</label>
+            <input type="text" name="account" id="guestaccount" placeholder="请输入你的工号">
+        </div>
+        <div class="tit">
+            <label for="pwd">密码：</label>
+            <input type="password" name="pwd" id="guestpwd" placeholder="请输入密码">
+        </div>
+        <input class="btn" type="button" value="提交" onclick="submitForm('guest')">
+        <button class="btn" type="reset">取消</button>
+        <button class="btn" type="button" onclick="window.location.href='guestregister.html'">注册</button>
+        
+    </form>
+
+    <form method="post" class="waiter hid" id="waiterForm" action="/login">
+        <img class="logo" src="./images/logo.png">
+        <ul>
+            <li class="swi guest-btnB">就餐顾客</li>
+            <li class="swi waiter-btnB">餐厅员工</li>
+            <li class="swi takeman-btnB">送餐骑手</li>
+        </ul>
+        
+             <!-- 添加错误消息容器 -->
+             <div id="waiterError" class="error"></div>
+        <div class="tit">
+
+            <label for="account">账号：</label>
+            <input type="text" name="account" id="waiteraccount" placeholder="请输入你的餐厅编号">
+        </div>
+        <div class="tit">
+            <label for="pwd">密码：</label>
+            <input type="password" name="pwd" id="waiterpwd" placeholder="请输入密码">
+        </div>
+        <input class="btn" type="button" value="提交" onclick="submitForm('waiter')">
+        <button class="btn" type="reset">取消</button>
+        <button class="btn" type="button" onclick="window.location.href='waiterregister.html'">注册</button>
+    </form>
+
+    <form method="post" class="takeman hid" id="takemanForm" action="/login">
+        <img class="logo" src="./images/logo.png">
+        <ul>
+            <li class="swi guest-btnC">就餐顾客</li>
+            <li class="swi waiter-btnC">餐厅员工</li>
+            <li class="swi takeman-btnC">送餐骑手</li>
+        </ul>
+         <!-- 添加错误消息容器 -->
+    <div id="takemanError" class="error"></div>
+        <div class="tit">
+
+            <label for="account">账号：</label>
+            <input type="text" name="account" id="takemanaccount" placeholder="请输入你的骑手编号">
+        </div>
+        <div class="tit">
+            <label for="pwd">密码：</label>
+            <input type="password" name="pwd" id="takemanpwd" placeholder="请输入密码">
+        </div>
+        <input class="btn" type="button" value="提交" onclick="submitForm('takeman')">
+        <button class="btn" type="reset">取消</button>
+        <button class="btn" type="button" onclick="window.location.href='takemanregister.html'">注册</button>        
+    </form>
+
+    <script>
+
+async function submitForm(userType) {
+    console.log('Inside submitForm function. Received userType:', userType);
+    
+    const account = document.getElementById(`${userType}account`).value;
+    const password = document.getElementById(`${userType}pwd`).value;
+    const errorContainer = document.getElementById(`${userType}Error`);
+
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userType,
+            account,
+            password,
+        }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+    console.log('Login successful', data);
+    // 根据用户身份进行页面重定向
+
+    switch (userType) {
+        case 'guest':
+            window.location.href = './guestpage.html';
+            break;
+        case 'waiter':
+            window.location.href = './waiterpage.html';
+            break;
+        case 'takeman':
+            window.location.href = './takemanpage.html';
+            break;
+        default:
+            console.error('Invalid user type');
+    }
+} else {
+    console.error('Login failed', data);
+        alert('用户名或密码错误');
+    }
+}
+
+
+        const bt1 = document.querySelector('.waiter-btnA');
+        const bt2 = document.querySelector('.takeman-btnA');
+        const bt3 = document.querySelector('.guest-btnB');
+        const bt4 = document.querySelector('.takeman-btnB');
+        const bt5 = document.querySelector('.guest-btnC');
+        const bt6 = document.querySelector('.waiter-btnC');
+            
+        bt1.addEventListener('click', function () {
+          document.querySelector('.guest').classList.add('hid');
+          document.querySelector('.waiter').classList.remove('hid');
+        });
+        
+        bt2.addEventListener('click', function () {
+          document.querySelector('.guest').classList.add('hid');
+          document.querySelector('.takeman').classList.remove('hid');
+        });
+
+        bt3.addEventListener('click', function () {
+          document.querySelector('.waiter').classList.add('hid');
+          document.querySelector('.guest').classList.remove('hid');
+        });
+        
+        bt4.addEventListener('click', function () {
+          document.querySelector('.waiter').classList.add('hid');
+          document.querySelector('.takeman').classList.remove('hid');
+        });
+        
+        bt5.addEventListener('click', function () {
+          document.querySelector('.takeman').classList.add('hid');
+          document.querySelector('.guest').classList.remove('hid');
+        });
+        
+        bt6.addEventListener('click', function () {
+          document.querySelector('.takeman').classList.add('hid');
+          document.querySelector('.waiter').classList.remove('hid');
+        });
+
+    </script>
+</body>
+</html>

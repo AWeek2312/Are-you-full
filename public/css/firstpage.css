@@ -1,0 +1,422 @@
+.topbar{
+    height: 30px;
+    background-color: #ECECEC;
+}
+
+.container{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.welcome{
+    height: 30px;
+    line-height: 30px;
+    color: #00a4ff;
+}
+
+.nihao{
+    font-size: 15px;
+}
+
+.topbar-nav{
+    height: 30px;
+    line-height: 30px;
+}
+
+
+.header{
+    height: 120px;
+}
+
+.logo{
+    width: auto;
+    height: 120px;
+    display: inline-block;
+    line-height: 120px;
+    vertical-align: middle;
+}
+
+.choice{
+    height: 120px;
+    line-height: 120px;
+}
+
+.choice li{
+    float: left;
+    width: 150px;
+    font-size: 30px;
+    margin-left: 50px;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+
+.top-mainpage{
+    cursor: pointer;
+    background-color: orange;
+}
+
+.choice ul li a{
+    color: black;
+}
+
+.round-picture{
+    width: 1000px;
+    height: 666.5px;
+    display: block;
+}
+
+.bigp {
+    position: relative;
+}
+  
+.bigp-picture {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+}
+  
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+  
+.prev-button {
+    left: 10px;
+}
+  
+.next-button {
+    right: 10px;
+}
+
+.wish-talk{
+    height: 30px;
+    line-height: 30px;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+    font-family: '华文新魏';
+}
+
+hr{
+    margin-top: 30px;
+}
+
+.wish-talk span{
+    color: orange;
+}
+
+.boast{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #555;
+    text-align: center;
+}
+
+.brag img{
+    margin-left: 100px;
+    margin-top: 100px;
+}
+
+.cn{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-right: 200px;
+}
+
+.num{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: orange;
+    text-align: center;
+    color: white;
+    margin-right: 10px;
+    line-height: 40px;
+}
+
+.cn-last{
+    margin-bottom: 50px;
+}
+
+.footer{
+    height: 470px;
+    background-color: #483E3E;
+    padding: 20px 0;
+}
+
+.believe{
+    margin: 0 auto;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bolder;
+}
+
+.en-believe{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.fp{
+    width: 100px;
+    height: auto;
+    margin-top: 80px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.num-data{
+    margin-top: 20px;
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.disc-data{
+    color: white;
+    font-size: 10px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.bottom{
+    background-color: #333;
+    height: 200px;
+    padding: 30px 0;
+}
+
+.name{
+    color: orange;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+.name span{
+    color: #999;
+}
+
+.bot-char-box{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.bot-char-desc{
+    display: inline-block;
+    width: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #ECECEC;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.last-char{
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.topbar {
+    height: 100px;
+    background-color: #3498db;
+    color: #fff;
+}
+
+.topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome {
+    text-align: center;
+    flex: 1;
+}
+
+.topbar-nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.topbar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.topbar-nav li {
+    margin-left: 20px;
+}
+
+.topbar-nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.topbar-nav a:hover {
+    color: #ecf0f1;
+}
+.topbar-nav .login-btn {
+background-color: transparent;
+color: #0cf351;
+border: 2px solid 4c7591;
+padding: 8px 15px;
+border-radius: 5px;
+text-decoration: none;
+font-weight: bold;
+font-size: 20px;
+transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+margin-top: 40px; /* 上边距为40px */
+cursor: pointer;
+}
+
+.topbar-nav .login-btn:hover {
+background-color: #7cb6dd;
+color: #fff;
+}
+
+.topbar-nav .register-btn {
+background-color: transparent;
+color: #fff;
+border: 2px solid #fff;
+padding: 8px 15px;
+border-radius: 5px;
+text-decoration: none;
+font-weight: bold;
+font-size: 14px;
+transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+margin-top: 40px; /* 上边距为60px */
+cursor: pointer;
+}
+
+.topbar-nav .register-btn:hover {
+background-color: #fff;
+color: #3498db;
+}
+
+
+
+.welcome {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    /* 垂直居中 */
+    margin-top: 30px;
+}
+
+.welcome span {
+    color: #fff;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #d1d5d8, #ffffff);
+}
+
+/* 为图像轮播添加样式 */
+.bigp {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.bigp-picture {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 1000px; /* 设置轮播的宽度 */
+    height: 600px; /* 设置轮播的高度 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 0 10px rgba(0, 0, 0, 0.1); /* 添加阴影和外轮廓效果 */
+}
+
+.round-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* 添加图像阴影效果 */
+}
+
+
+/* 轮播图按钮样式 */
+.prev-button,
+.next-button {
+    background-color: rgba(76, 122, 175, 0.6); /* 使用 rgba 设置按钮背景颜色，并增加透明度 */
+    color: #fff; /* 设置按钮文字颜色 */
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.prev-button:hover,
+.next-button:hover {
+    background-color: rgba(69, 127, 160, 0.2); /* 鼠标悬停时按钮颜色变化，并增加透明度 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 鼠标悬停时添加阴影效果，透明度增加 */
+}
+
+/* 添加按钮阴影效果，透明度增加 */
+.prev-button,
+.next-button {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+/* 可选：为轮播图添加悬停效果 */
+.round-picture:hover {
+    transform: scale(1.1);
+}

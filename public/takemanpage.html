@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外卖员送餐页面</title>
+    <link rel="stylesheet" href="./css/takemanpage.css">
+</head>
+
+<body>
+    <header>
+        <img src="./images/logo.png" alt="Logo">
+        <h1>送餐系统</h1>
+        <div class="user-info">
+            <img src="./images/User Avatar.jpeg" alt="User Avatar">
+            <span>你好！送餐员</span>
+            <a href="./index.html"> <button class="logout-btn">退出登录</button></a>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="column">
+            <div class="column-title">待处理订单</div>
+            <ul id="orderList"></ul>
+        </div>
+
+        <div class="column">
+            <div class="column-title">配送中订单</div>
+            <ul id="currentOrderList"></ul>
+        </div>
+
+        <div class="column">
+            <div class="column-title">订单历史</div>
+            <ul id="orderHistory"></ul>
+        </div>
+    </div>
+
+    <script>
+        let orders = [];
+        let currentOrder = null;
+
+        // 异步函数，从服务器获取订单数据
+        async function fetchOrders() {
+            try {
+                const response = await fetch('/getOrders');
+                const data = await response.json();
+
+                orders = data.orders;
+                console.log('Fetched orders:', orders);
+                renderOrders();
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+            }
+        }
+        // 渲染订单数据到页面
+// 渲染订单数据到页面
+function renderOrders() {
+    console.log('Rendering orders:', orders);
+
+    if (!orders) {
+        console.log('No orders available.');
+        return;
+    }
+
+    const orderListElement = document.getElementById('orderList');
+    const currentOrderListElement = document.getElementById('currentOrderList');
+    const orderHistoryElement = document.getElementById('orderHistory');
+
+    orderListElement.innerHTML = "";
+    currentOrderListElement.innerHTML = "";
+    orderHistoryElement.innerHTML = "";
+
+    if (orders.length > 0) {
+        orders.forEach(order => {
+            console.log('Processing order:', order);
+            const li = document.createElement('li');
+            li.className = 'order-item';
+            li.innerHTML = `
+                <strong>订单编号:</strong> ${order.order_id} <br>
+                <strong>顾客:</strong> ${order.customer_name} <br>
+                <strong>地址:</strong> ${order.address} <br>
+                <strong>电话:</strong> ${order.contact_number} <br>
+                <strong>金额:</strong> ¥${order.amount} <br>
+                <strong>期望送达时间:</strong> ${order.expectation_time} <br>
+            `;
+
+            const status = order.order_status.charAt(0).toUpperCase() + order.order_status.slice(1);
+            console.log('Order status:', status);
+
+            if (status === 'Pending') {
+                li.innerHTML += `<button onclick="acceptOrder(${order.order_id})">接单</button>`;
+                orderListElement.appendChild(li);
+            } else if (status === 'Delivering') {
+                li.innerHTML += `<strong>接单时间:</strong> ${formatTime(order.acceptance_time)} <br>`;
+                li.innerHTML += `<button onclick="completeOrder(${order.order_id})">送达</button>`;
+                currentOrderListElement.appendChild(li);
+            } else if (status === 'Completed') {
+                li.innerHTML += `<strong>完成时间:</strong> ${formatTime(order.completion_time)} <br>`;
+                li.innerHTML += `<strong>评价:</strong> ${order.review} <br>`;
+                orderHistoryElement.appendChild(li);
+            }
+        });
+    } else {
+        console.log('No orders available.');
+    }
+}
+
+
+
+        // 格式化时间函数
+        function formatTime(time) {
+            if (!time) {
+                return 'N/A';
+            }
+            return new Date(time).toLocaleTimeString();
+        }
+
+        async function acceptOrder(orderId) {
+            const orderIndex = orders.findIndex(o => o.order_id === orderId);
+
+            if (orderIndex !== -1 && !currentOrder) {
+                currentOrder = orders.splice(orderIndex, 1)[0];
+                const currentOrderListElement = document.getElementById('currentOrderList');
+
+                // 更新订单状态为 'Delivering' 并设置接受时间
+                await updateOrderStatus(currentOrder.order_id, 'Delivering', new Date().toISOString(), null);
+
+                // 从服务器获取订单以更新列表
+                await fetchOrders();
+            }
+        }
+
+        async function completeOrder(orderId) {
+            const orderHistoryElement = document.getElementById('orderHistory');
+
+            // 在更新之前检查当前状态
+            const order = orders.find(o => o.order_id === orderId);
+
+            if (order && order.order_status === 'Delivering') {
+                const acceptanceTime = order.acceptance_time; // 从订单中获取接受时间
+
+                const completionTime = new Date().toISOString();
+                console.log(completionTime)
+
+                await updateOrderStatus(orderId, 'Completed', acceptanceTime, completionTime);
+
+                // 重置 currentOrder，使其为 null，以便再次接单
+                currentOrder = null;
+
+                // 从服务器获取订单以更新列表
+                await fetchOrders();
+            } else {
+                console.error('Invalid order status for completion.');
+            }
+        }
+
+
+        // 更新订单状态函数
+        async function updateOrderStatus(orderId, status, acceptanceTime, completionTime) {
+            try {
+                // 更新状态为 'Delivering' 时
+                if (status === 'Delivering') {
+                    // 将接受时间格式化为 MySQL datetime 格式
+                    const formattedTime = acceptanceTime
+                        ? new Date(acceptanceTime).toISOString().slice(0, 19).replace('T', ' ')
+                        : null;
+
+                    const response = await fetch(`/updateOrderStatus/${orderId}/${status}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ acceptanceTime: formattedTime }),
+                    });
+
+                    const data = await response.json();
+
+                    if (!data.success) {
+                        console.error('Failed to update order status:', data.error);
+                    }
+                    console.log('Received parameters:', { orderId, status, acceptanceTime, completionTime });
+                }
+
+                // 更新状态为 'Completed' 时
+                if (status === 'Completed') {
+                    const formattedCompletionTime = completionTime
+                        ? new Date(completionTime).toISOString().slice(0, 19).replace('T', ' ')
+                        : null;
+
+                    console.log(formattedCompletionTime);
+                    // 添加一个新的 fetch 请求来更新完成时间
+                    await fetch(`/updateOrderStatus/${orderId}/${status}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ completionTime: formattedCompletionTime }),
+                    });
+                }
+
+            } catch (error) {
+                console.error('Error updating order status:', error);
+            }
+        }
+
+        fetchOrders();
+    </script>
+</body>
+
+</html>

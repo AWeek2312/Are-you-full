@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/customerorder.css" />
+  <title>少爷请点餐</title>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container clearfix">
+      <div class="welcome leftfix">
+        <span class="nihao" style="color: #fff; font-weight: bold; font-size:40px;">亲爱的请点餐</span>
+      </div>
+      <div class="topbar-nav rightfix">
+        <ul class="top-list clearfix">
+          <li>
+            <p style="color: #fff;">欢迎你，亲爱的顾客</p>
+          </li>
+          <li><img src="./images/User Avatar.jpeg" alt="头像" style="width: 50px; height: 50px;"></li>
+          <li> <a href="./index.html"> <button class="logout-btn">退出登录</button></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="header">
+    <div class="container clearfix">
+      <div class="logo leftfix">
+        <img src="./images/logo.png" alt="饱了么" />
+      </div>
+      <div class="choice rightfix">
+        <ul class="choice-page clearfix">
+          <li class="top-mainpage">查看菜单</li>
+          <li><a href="./guestadminlist.html">查看订单</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="menu">
+    <div class="container menu-inner">
+      <div class="menu-tit">今日菜单</div>
+      <ul class="dishes clearfix"></ul>
+    </div>
+  </div>
+
+  <div class="gogocar">
+    <div class="container gogocar-inner">
+      <div class="gogocar-top">我的购物车</div>
+      <ul class="my-gogocar clearfix"></ul>
+      <div class="subm">
+        <form id="orderForm">
+          <label>姓名：</label>
+          <input type="text" name="name" id="name" placeholder="请输入您的姓名" />
+
+          <label>电话：</label>
+          <input type="text" name="phone" id="phone" placeholder="请输入您的电话" />
+
+          <label>送餐时间：</label>
+          <input type="datetime-local" name="deliveryTime" id="deliveryTime" />
+
+          <label>送餐地址：</label>
+          <input type="text" name="deliveryAddr" id="deliveryAddr" placeholder="请输入送餐地址" />
+
+          <button class="rightfix" type="button" onclick="submitOrder()">提交</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="believe">我们承诺给你美好的美食体验</div>
+      <div class="en-believe">
+        WE PROMISE TO GIVE YOU THE BEST FOOD EXPERIENCE
+      </div>
+      <div class="foot-picture clearfix">
+        <img class="leftfix fp" src="./images/footer1.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer2.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer3.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer4.png" alt="底部图片" />
+      </div>
+      <div class="disc-pict">
+        <ul class="clearfix">
+          <li class="leftfix num-data">600</li>
+          <li class="leftfix num-data">120+</li>
+          <li class="leftfix num-data">10,000+</li>
+          <li class="leftfix num-data">100+</li>
+        </ul>
+        <ul class="clearfix">
+          <li class="leftfix disc-data">家分店</li>
+          <li class="leftfix disc-data">款味道产品</li>
+          <li class="leftfix disc-data">客户好评</li>
+          <li class="leftfix disc-data">位厨师</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container">
+      <div class="name">BAO <span>LEME</span></div>
+      <div class="bot-cha">
+        <ul class="clearfix bot-char-box">
+          <li class="leftfix bot-char-desc">首页</li>
+          <li class="leftfix bot-char-desc">品牌故事</li>
+          <li class="leftfix bot-char-desc">菜色欣赏</li>
+          <li class="leftfix bot-char-desc">新闻资讯</li>
+          <li class="leftfix bot-char-desc">联系我们</li>
+        </ul>
+      </div>
+      <div class="last-char">
+        手机版&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;本站由饱了么集团搭建&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;管理登录
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const myGoGoCar = [];
+    const ul = document.querySelector(".dishes");
+    const ul2 = document.querySelector(".my-gogocar");
+    const wantEat = document.querySelector(".gogocar");
+    const sub = document.querySelector(".subm button");
+    let data;
+
+    async function render() {
+      const response = await fetch('/getDishes');
+      data = await response.json();
+      for (let i = 0; i < data.dishes.length; i++) {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <img class="dish-picture" src="${data.dishes[i].dish_image_path}" alt="菜品">
+            <h3>${data.dishes[i].dish_name}</h3>
+            <p>${data.dishes[i].dish_description}</p>
+            <div>价格：${data.dishes[i].dish_price}元 销量：${data.dishes[i].dish_sales}份
+              <br>
+              <p class="rightfix add-to-cart-btn" href="javascript:" data-num=${i}>加入购物车</p>
+            </div>
+          `;
+        li.classList.add("leftfix");
+        li.classList.add("dish-block");
+        ul.appendChild(li);
+      }
+    }
+
+    function renderGogocar() {
+      ul2.innerHTML = ""; // 清空ul2内容
+      for (let i = 0; i < myGoGoCar.length; i++) {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <img class="dish-picture" src="${myGoGoCar[i].dish_image_path}" alt="菜品">
+            <h3>${myGoGoCar[i].dish_name}</h3>
+            <p>${myGoGoCar[i].dish_description}</p>
+            <div>价格：${myGoGoCar[i].dish_price}元 销量：${myGoGoCar[i].dish_sales}份
+            <br>
+            <p class="rightfix cancel-button" href="javascript:" data-num=${i}>取消</p>
+            `;
+        li.classList.add("leftfix");
+        li.classList.add("dish-block");
+        ul2.appendChild(li);
+      }
+    }
+
+    ul.addEventListener("click", function (e) {
+      if (e.target.tagName === "P") {
+        myGoGoCar.push(data.dishes[e.target.dataset.num]);
+        renderGogocar();
+      }
+    });
+
+    wantEat.addEventListener("click", function (e) {
+      if (e.target.tagName === "P") {
+        myGoGoCar.splice(e.target.dataset.num, 1);
+        renderGogocar();
+      }
+    });
+
+    sub.addEventListener("click", function (e) {
+      myGoGoCar.length = 0;
+      renderGogocar();
+    });
+
+    async function submitOrder() {
+      // 计算订单总金额
+      const orderAmount = myGoGoCar.reduce((total, dish) => total + dish.dish_price, 0);
+
+      // 获取顾客信息
+      const customerName = document.getElementById('name').value;
+      const contactNumber = document.getElementById('phone').value;
+      const deliveryAddr = document.getElementById('deliveryAddr').value;
+      const expectationTime = document.getElementById('deliveryTime').value;
+      // 将 expectationTime 转换为 MySQL 接受的格式
+      const formattedExpectationTime = new Date(expectationTime).toISOString().slice(0, 19).replace('T', ' ');
+
+      // 准备订单数据
+      const orderData = {
+        customer_name: customerName,
+        review: null,
+        address: deliveryAddr,
+        contact_number: contactNumber,
+        amount: orderAmount,
+        completion_time: null,
+        acceptance_time: null,
+        expectation_time: formattedExpectationTime,
+        // 将购物车中的菜品信息添加到订单数据中
+        order_details: myGoGoCar.map(dish => ({
+
+          dish_id: dish.dish_id,
+          dish_price: dish.dish_price,
+          dish_image_path: dish.dish_image_path,
+          dish_name: dish.dish_name
+        }))
+      };
+      console.log(orderData);
+      // 将订单数据发送到服务器
+      const response = await fetch('/submitOrder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (response.ok) {
+        // 订单成功提交
+        alert('订单提交成功！');
+        // 清空购物车
+        myGoGoCar.length = 0;
+        renderGogocar(); // 更新界面
+      } else {
+        // 处理错误
+        alert('提交订单时发生错误。请重试。');
+      }
+    }
+
+    render();
+  </script>
+
+
+
+</body>
+
+</html>

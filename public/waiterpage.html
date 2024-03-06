@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/waiterpage.css" />
+  <title>管理菜单</title>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container clearfix">
+      <div class="welcome leftfix">
+        <span class="nihao" style="color: #fff; font-weight: bold; font-size:40px;">菜单管理系统</span>
+      </div>
+      <div class="topbar-nav rightfix">
+        <ul class="top-list clearfix">
+          <li><p style="color: #fff;">欢迎你，餐厅员工</p></li>
+          <li><img src="./images/User Avatar.jpeg" alt="头像" style="width: 50px; height: 50px;"></li>
+          <li> <a href="./index.html"> <button class="logout-btn">退出登录</button></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="header">
+    <div class="container clearfix">
+      <div class="logo leftfix">
+        <img src="./images/logo.png" alt="饱了么" />
+      </div>
+      <div class="choice rightfix">
+        <ul class="choice-page clearfix">
+          <li class="top-mainpage">菜单管理</li>
+          <li><a href="./waiteradminlist.html">订单管理</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="menu">
+    <div class="container menu-inner">
+      <ul class="dishes clearfix"></ul>
+    </div>
+  </div>
+
+  <div class="adddish">
+    <div class="container">
+      <h3 class="dish-tit">增 加 新 品</h3>
+      <form class="info" action="/addDish" method="post" autocomplete="off">
+        <label for="picture">图片:</label>
+        <input type="text" id="picture" name="picture" required />
+
+        <label for="name">名称:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="desc">描述:</label>
+        <input type="text" id="desc" name="desc" required />
+
+        <label for="price">价格:</label>
+        <input type="text" id="price" name="price" required />
+
+        <button type="button" onclick="addDish()">提交 </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="believe">我们承诺给你美好的美食体验</div>
+      <div class="en-believe">
+        WE PROMISE TO GIVE YOU THE BEST FOOD EXPERIENCE
+      </div>
+      <div class="foot-picture clearfix">
+        <img class="leftfix fp" src="./images/footer1.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer2.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer3.png" alt="底部图片" />
+        <img class="leftfix fp" src="./images/footer4.png" alt="底部图片" />
+      </div>
+      <div class="disc-pict">
+        <ul class="clearfix">
+          <li class="leftfix num-data">600</li>
+          <li class="leftfix num-data">120+</li>
+          <li class="leftfix num-data">10,000+</li>
+          <li class="leftfix num-data">100+</li>
+        </ul>
+        <ul class="clearfix">
+          <li class="leftfix disc-data">家分店</li>
+          <li class="leftfix disc-data">款味道产品</li>
+          <li class="leftfix disc-data">客户好评</li>
+          <li class="leftfix disc-data">位厨师</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container">
+      <div class="name">BAO <span>LEME</span></div>
+      <div class="bot-cha">
+        <ul class="clearfix bot-char-box">
+          <li class="leftfix bot-char-desc">首页</li>
+          <li class="leftfix bot-char-desc">品牌故事</li>
+          <li class="leftfix bot-char-desc">菜色欣赏</li>
+          <li class="leftfix bot-char-desc">新闻资讯</li>
+          <li class="leftfix bot-char-desc">联系我们</li>
+        </ul>
+      </div>
+      <div class="last-char">
+        手机版&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;本站由饱了么集团搭建&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;管理登录
+      </div>
+    </div>
+  </div>
+
+  <form class="ch-info overlay-box hidden" action="/updateDish" method="post" autocomplete="off">
+    <h3 class="change-tit">修改菜单</h3>
+    <label for="ch-picture">图片:</label>
+    <input type="text" id="ch-picture" name="ch-picture" required />
+
+    <label for="ch-name">名称:</label>
+    <input type="text" id="ch-name" name="ch-name" required />
+
+    <label for="ch-desc">描述:</label>
+    <input type="text" id="ch-desc" name="ch-desc" required />
+
+    <label for="ch-price">价格:</label>
+    <input type="text" id="ch-price" name="ch-price" required />
+
+    <button type="button" onclick="updateDish()">提交</button>
+    <p class="aba-chan rightfix">取消</p>
+  </form>
+
+  <script>
+    let dishid;
+    async function render() {
+      try {
+        const response = await fetch('/getDishes');
+        const data = await response.json();
+
+        const ul = document.querySelector(".dishes");
+        while (ul.firstChild) {
+          ul.removeChild(ul.firstChild);
+        }
+
+        for (let i = 0; i < data.dishes.length; i++) {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <img class="dish-picture" src="${data.dishes[i].dish_image_path}" alt="菜品">
+            <h3>${data.dishes[i].dish_name}</h3>
+            <p>${data.dishes[i].dish_description}</p>
+            <div>价格：${data.dishes[i].dish_price}元 销量：${data.dishes[i].dish_sales}份
+              <br>
+              <a href="javascript:" data-id=${data.dishes[i].dish_id} class="delete-btn">删除</a>
+              <p class="updata-btn rightfix" href="javascript:" data-num=${data.dishes[i].dish_id}>修改</p>
+          `;
+          li.classList.add("leftfix");
+          li.classList.add("dish-block");
+          ul.appendChild(li);
+        }
+
+        const form = document.querySelector(".ch-info");
+        const cancelButton = document.querySelector(".aba-chan");
+
+        cancelButton.addEventListener("click", () => {
+          // 隐藏表单
+          form.classList.add("hidden");
+        });
+
+        const updateButtons = document.querySelectorAll(".updata-btn");
+        updateButtons.forEach(button => {
+          button.addEventListener("click", () => {
+            const dishId = button.getAttribute("data-num");
+            dishid = dishId;
+            console.log("点击修改按钮，菜品ID：" + dishId);
+            document.querySelector(".ch-info").classList.remove("hidden");
+          });
+        });
+
+        const deleteButtons = document.querySelectorAll(".delete-btn");
+        deleteButtons.forEach(button => {
+          button.addEventListener("click", async () => {
+            const dishId = button.getAttribute("data-id");
+            const confirmDelete = window.confirm("确认删除该菜品吗？");
+
+            if (confirmDelete) {
+              const deleteResponse = await fetch(`/deleteDish/${dishId}`, {
+                method: 'DELETE',
+              });
+
+              if (deleteResponse.ok) {
+                console.log(`菜品ID为${dishId}的菜品删除成功`);
+                render();
+              } else {
+                console.error(`删除菜品失败：${deleteResponse.status}`);
+              }
+            }
+          });
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    async function addDish() {
+      const picture = document.getElementById('picture').value;
+      const name = document.getElementById('name').value;
+      const desc = document.getElementById('desc').value;
+      const price = document.getElementById('price').value;
+
+      try {
+        const response = await fetch('/addDish', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            picture,
+            name,
+            desc,
+            price,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert(data.message); // 菜品添加成功
+          render(); // 重新渲染菜单
+        } else {
+          alert(data.error); // 菜品添加失败，显示错误信息
+        }
+      } catch (error) {
+        console.error('Error during adding dish:', error);
+        alert('菜品添加失败，请稍后再试。');
+      }
+    }
+
+
+    async function updateDish() {
+
+      const picture = document.getElementById("ch-picture").value;
+      const name = document.getElementById("ch-name").value;
+      const desc = document.getElementById("ch-desc").value;
+      const price = document.getElementById("ch-price").value;
+      const dishId = dishid;
+      try {
+        // 使用 Fetch API 发送数据到服务器
+        const response = await fetch(`/updateDish/${dishId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            picture,
+            name,
+            desc,
+            price,
+          }),
+        });
+
+        // 处理服务器的响应
+        if (response.ok) {
+          alert("菜品修改成功"); // 菜品添加成功
+          render(); // 重新渲染菜单
+        } else {
+          alert("菜品修改成功"); // 菜品添加成功
+          render(); // 重新渲染菜单
+        }
+      } catch (error) {
+        // 处理异常情况
+      }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', render);
+  </script>
+</body>
+
+</html>
